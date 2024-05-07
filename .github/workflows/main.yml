@@ -84,4 +84,4 @@ jobs:
         with:
           name: roothide-Dopamine2-${{ env.tag }}
           path: |
-            ${{ github.workspace }}/Application/roothide-Dopamine2NEW-${{ env.tag }}.tipa
+            ${{ github.workspace }}/Application/roothide-Dopamine2NEWEST-${{ env.tag }}.tipa
