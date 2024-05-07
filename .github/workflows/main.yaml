@@ -1,4 +1,4 @@
-name: "*** build Dopamine2-roothide.tipa ***"
+name: "*** build updated Dopamine2-roothide.tipa ***"
 
 on:
   workflow_dispatch:
