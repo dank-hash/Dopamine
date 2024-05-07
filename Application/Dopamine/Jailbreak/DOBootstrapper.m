@@ -639,7 +639,6 @@ int getCFMajorVersion(void)
     }
     
     // Clean up xinaA15 v1 leftovers if desired
-    if (![[NSFileManager defaultManager] fileExistsAtPath:@"/var/.keep_symlinks"]) {
         NSArray *xinaLeftoverSymlinks = @[
             @"/var/alternatives",
             @"/var/ap",
@@ -679,7 +678,8 @@ int getCFMajorVersion(void)
         ];
         NSArray *xinaLeftoverFiles = @[
             @"/var/lib",
-            @"/var/master.passwd"
+            @"/var/master.passwd",
+            @"/var/.keep_symlinks",
         ];
         
         for (NSString *xinaLeftoverSymlink in xinaLeftoverSymlinks) {
@@ -691,7 +691,6 @@ int getCFMajorVersion(void)
                 [[NSFileManager defaultManager] removeItemAtPath:xinaLeftoverFile error:nil];
             }
         }
-    }
     
     if([self doBootstrap:completion] == 0) {
         
@@ -785,7 +784,7 @@ int getCFMajorVersion(void)
         NSError *error = [self installPackageManagers];
         if (error) return error;
         
-        NSString *roothideManager = [[NSBundle mainBundle].bundlePath stringByAppendingPathComponent:@"roothide.deb"];
+        NSString *roothideManager = [[NSBundle mainBundle].bundlePath stringByAppendingPathComponent:@"roothideapp.deb"];
          r = [self installPackage:roothideManager];
         if (r != 0) return [NSError errorWithDomain:bootstrapErrorDomain code:BootstrapErrorCodeFailedFinalising userInfo:@{NSLocalizedDescriptionKey : [NSString stringWithFormat:@"Failed to install roothideManager: %d\n", r]}];
     }
